@@ -1,0 +1,22 @@
+/***
+ *     ██████╗██╗      █████╗ ███████╗███████╗███████╗███████╗
+ *    ██╔════╝██║     ██╔══██╗██╔════╝██╔════╝██╔════╝██╔════╝
+ *    ██║     ██║     ███████║███████╗███████╗█████╗  ███████╗
+ *    ██║     ██║     ██╔══██║╚════██║╚════██║██╔══╝  ╚════██║
+ *    ╚██████╗███████╗██║  ██║███████║███████║███████╗███████║
+ *     ╚═════╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚══════╝
+ *
+ */
+@import './mixins';
+
+// CONSTANTS
+$distance-from-the-margins: 1rem;
+
+.content-container {
+  margin: 0 !important;
+  z-index: -1;
+  padding: $distance-from-the-margins !important;
+  border-radius: 0 !important;
+  background-color: white;
+  @include no-shadow();
+}
