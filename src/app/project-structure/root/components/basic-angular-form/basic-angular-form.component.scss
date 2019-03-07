@@ -35,3 +35,30 @@
  *    ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝
  *
  */
+
+ button {
+   &:hover {
+     background-color: darkolivegreen;
+   }
+   color: white;
+   background: darkcyan;
+   padding: 0.5rem;
+   border-radius: 0.5rem;
+   border: none
+ }
+
+input, textarea {
+  font-family: 'Roboto', sans-serif;
+  padding: 0.2rem 0.3rem;
+  border-radius: 0.3rem;
+  border: 1px gray solid;
+}
+
+div>label:first-child {
+  font-family: 'Roboto', sans-serif;
+  // color: darkcyan;
+  font-weight: bold;
+}
+
+
+

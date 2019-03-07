@@ -35,54 +35,143 @@
  *       ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
  *
  */ -->
-<form>
+<form
+    fxLayout="row"
+    fxLayoutAlign="center center">
 
-  <!-- username -->
-  <div>
-    <label for="username">Username: </label>
-    <input
-        placeholder="your username..."
-        id="username"
-        type="text">
-  </div>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxLayoutGap="0.75rem">
 
-  <!-- email -->
-  <div>
-    <label for="email">Email: </label>
-    <input
-        placeholder="your email..."
-        id="email"
-        type="email">
-  </div>
+    <!-- username -->
+    <div
+        fxFill
+        fxLayout="row"
+        fxLayoutGap="0.35rem">
+      <label
+          fxFlex="30"
+          fxLayout="row"
+          fxLayoutAlign="end center"
+          for="username">
+        Username:
+      </label>
+      <input
+          placeholder="your username..."
+          id="username"
+          type="text">
+    </div>
 
-  <!-- birth date -->
-  <div>
-    <label for="birthDate">Birth date: </label>
-    <input
-        placeholder="your birth date..."
-        id="birthDate"
-        type="date">
-  </div>
+    <!-- email -->
+    <div
+        fxFill
+        fxLayout="row"
+        fxLayoutGap="0.35rem">
+      <label
+          fxFlex="30"
+          fxLayout="row"
+          fxLayoutAlign="end center"
+          for="email">
+        Email:
+      </label>
+      <input
+          placeholder="your email..."
+          id="email"
+          type="email">
+    </div>
 
-  <!-- gender -->
-  <div>
-    <input
-        type="radio"
-        id="genderMale"
-        name="gender"
-        value="male">
-    <label for="genderMale">Male</label>
-    <input
-        type="radio"
-        id="genderFemale"
-        name="gender"
-        value="Female">
-    <label for="genderFemale">Female</label>
-  </div>
+    <!-- birth date -->
+    <div
+        fxFill
+        fxLayout="row"
+        fxLayoutGap="0.35rem">
+      <label
+            fxFlex="30"
+            fxLayout="row"
+            fxLayoutAlign="end center"
+            for="birthDate">
+          Birth date:
+        </label>
+      <input
+          placeholder="your birth date..."
+          id="birthDate"
+          type="date">
+    </div>
 
-  <!-- description -->
-  <div>
-    <label for="description">Description</label>
-    <textarea id="description" cols="30" rows="10"></textarea>
+    <!-- gender -->
+    <div
+        fxFill
+        fxLayout="row"
+        fxLayoutGap="0.35rem">
+      <div
+          fxFlex="30"
+          fxLayout="row"
+          fxLayoutAlign="end center">
+        <label>Gender:</label>
+      </div>
+      <div
+          fxLayout="row"
+          fxLayoutGap="0.55rem">
+        <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            fxLayoutGap="0.2rem">
+          <input
+              type="radio"
+              id="genderMale"
+              name="gender"
+              value="male">
+          <label for="genderMale">Male</label>
+        </div>
+        <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            fxLayoutGap="0.2rem">
+          <input
+              type="radio"
+              id="genderFemale"
+              name="gender"
+              value="Female">
+          <label for="genderFemale">Female</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- description -->
+    <div
+        fxFill
+        fxLayout="row"
+        fxLayoutGap="0.35rem">
+      <label
+          fxFlex="30"
+          fxLayout="row"
+          fxLayoutAlign="end center"
+          for="description">
+        Description:
+      </label>
+      <textarea
+          id="description"
+          cols="40"
+          rows="5"></textarea>
+    </div>
+
+    <!-- buttons -->
+    <div
+        fxFill
+        fxLayout="row"
+        fxLayoutGap="0.35rem">
+      <div
+          fxFlex="30"
+          fxLayout="row"
+          fxLayoutAlign="end center">
+        &nbsp;
+      </div>
+      <div
+          fxLayout="row"
+          fxLayoutGap="0.55rem">
+        <button>Submit</button>
+        <button>Reset</button>
+      </div>
+    </div>
   </div>
 </form>
