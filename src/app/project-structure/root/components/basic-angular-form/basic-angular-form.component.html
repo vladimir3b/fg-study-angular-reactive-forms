@@ -35,6 +35,54 @@
  *       ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
  *
  */ -->
-<p>
-  basic-angular-form works!
-</p>
+<form>
+
+  <!-- username -->
+  <div>
+    <label for="username">Username: </label>
+    <input
+        placeholder="your username..."
+        id="username"
+        type="text">
+  </div>
+
+  <!-- email -->
+  <div>
+    <label for="email">Email: </label>
+    <input
+        placeholder="your email..."
+        id="email"
+        type="email">
+  </div>
+
+  <!-- birth date -->
+  <div>
+    <label for="birthDate">Birth date: </label>
+    <input
+        placeholder="your birth date..."
+        id="birthDate"
+        type="date">
+  </div>
+
+  <!-- gender -->
+  <div>
+    <input
+        type="radio"
+        id="genderMale"
+        name="gender"
+        value="male">
+    <label for="genderMale">Male</label>
+    <input
+        type="radio"
+        id="genderFemale"
+        name="gender"
+        value="Female">
+    <label for="genderFemale">Female</label>
+  </div>
+
+  <!-- description -->
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" cols="30" rows="10"></textarea>
+  </div>
+</form>
