@@ -35,7 +35,11 @@
  *    ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝
  *
  */
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'fg-basic-angular-form',
@@ -44,9 +48,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BasicAngularFormComponent implements OnInit {
 
-  constructor() { }
+/***
+ *    ┌─┐┬─┐┌─┐┌─┐┌─┐┬─┐┌┬┐┬┌─┐┌─┐
+ *    ├─┘├┬┘│ │├─┘├┤ ├┬┘ │ │├┤ └─┐
+ *    ┴  ┴└─└─┘┴  └─┘┴└─ ┴ ┴└─┘└─┘
+ */
+  public submitted: boolean;
+  public userDetailsForm: FormGroup;
 
-  ngOnInit() {
+/***
+ *    ┌─┐┌─┐┌┐┌┌─┐┌┬┐┬─┐┬ ┬┌─┐┌┬┐┌─┐┬─┐
+ *    │  │ ││││└─┐ │ ├┬┘│ ││   │ │ │├┬┘
+ *    └─┘└─┘┘└┘└─┘ ┴ ┴└─└─┘└─┘ ┴ └─┘┴└─
+ */
+  public constructor() { }
+
+
+ /***
+ *    ┬  ┬┌─┐┌─┐
+ *    │  │├┤ ├┤
+ *    ┴─┘┴└  └─┘
+ *    ┌─┐┬ ┬┌─┐┬  ┌─┐
+ *    │  └┬┘│  │  ├┤
+ *    └─┘ ┴ └─┘┴─┘└─┘
+ *    ┬ ┬┌─┐┌─┐┬┌─┌─┐
+ *    ├─┤│ ││ │├┴┐└─┐
+ *    ┴ ┴└─┘└─┘┴ ┴└─┘
+ */
+  public ngOnInit(): void {
+    this.userDetailsForm = new FormGroup({
+      'username': new FormControl(null),
+      'email': new FormControl(null),
+      'birthDate': new FormControl(null),
+      'gender': new FormControl(null),
+      'description': new FormControl(null)
+    });
   }
+
+
+/***
+ *    ┌┬┐┌─┐┌┬┐┬ ┬┌─┐┌┬┐┌─┐
+ *    │││├┤  │ ├─┤│ │ ││└─┐
+ *    ┴ ┴└─┘ ┴ ┴ ┴└─┘─┴┘└─┘
+ */
+  public onSubmit(): void {
+    if (this.userDetailsForm.valid) {
+      this.submitted = true;
+      console.log(this.userDetailsForm);
+    }
+  }
+
 
 }

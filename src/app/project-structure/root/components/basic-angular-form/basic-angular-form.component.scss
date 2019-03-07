@@ -38,7 +38,7 @@
 
  button {
    &:hover {
-     background-color: darkolivegreen;
+     background-color: darkorange;
    }
    color: white;
    background: darkcyan;
@@ -60,5 +60,15 @@ div>label:first-child {
   font-weight: bold;
 }
 
+input+label {
+  font-family: 'Roboto', sans-serif;
+}
 
-
+div>span:first-child {
+  font-family: 'Roboto', sans-serif;
+  background-color: lightcoral;
+  color: white;
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border-radius: 10rem;
+}

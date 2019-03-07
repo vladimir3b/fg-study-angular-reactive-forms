@@ -23,6 +23,7 @@ import {
   MatTabsModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // MY IMPORTS
 import { BasicAngularFormComponent } from './components/basic-angular-form/basic-angular-form.component';
@@ -55,6 +56,7 @@ const KENDO_UI = [];
     BrowserAnimationsModule,
     BrowserModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     RootRouting
   ],
   providers: [],

@@ -36,6 +36,8 @@
  *
  */ -->
 <form
+    [formGroup]="userDetailsForm"
+    (ngSubmit)="onSubmit()"
     fxLayout="row"
     fxLayoutAlign="center center">
 
@@ -57,6 +59,7 @@
         Username:
       </label>
       <input
+          formControlName="username"
           placeholder="your username..."
           id="username"
           type="text">
@@ -75,6 +78,7 @@
         Email:
       </label>
       <input
+          formControlName="email"
           placeholder="your email..."
           id="email"
           type="email">
@@ -93,6 +97,7 @@
           Birth date:
         </label>
       <input
+          formControlName="birthDate"
           placeholder="your birth date..."
           id="birthDate"
           type="date">
@@ -117,6 +122,7 @@
             fxLayoutAlign="center center"
             fxLayoutGap="0.2rem">
           <input
+              formControlName="gender"
               type="radio"
               id="genderMale"
               name="gender"
@@ -128,10 +134,11 @@
             fxLayoutAlign="center center"
             fxLayoutGap="0.2rem">
           <input
+              formControlName="gender"
               type="radio"
               id="genderFemale"
               name="gender"
-              value="Female">
+              value="female">
           <label for="genderFemale">Female</label>
         </div>
       </div>
@@ -150,6 +157,7 @@
         Description:
       </label>
       <textarea
+          formControlName="description"
           id="description"
           cols="40"
           rows="5"></textarea>
@@ -175,3 +183,10 @@
     </div>
   </div>
 </form>
+
+<div
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    *ngIf="submitted">
+  <span>Form submitted, open the console to see the result...</span>
+</div>
