@@ -39,7 +39,11 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'fg-basic-angular-form',
@@ -53,7 +57,7 @@ export class BasicAngularFormComponent implements OnInit {
  *    ├─┘├┬┘│ │├─┘├┤ ├┬┘ │ │├┤ └─┐
  *    ┴  ┴└─└─┘┴  └─┘┴└─ ┴ ┴└─┘└─┘
  */
-  public submitted: boolean;
+  public submittedMessage: boolean;
   public userDetailsForm: FormGroup;
 
 /***
@@ -77,10 +81,13 @@ export class BasicAngularFormComponent implements OnInit {
  */
   public ngOnInit(): void {
     this.userDetailsForm = new FormGroup({
-      'username': new FormControl(null),
-      'email': new FormControl(null),
-      'birthDate': new FormControl(null),
-      'gender': new FormControl(null),
+      'username': new FormControl(null, Validators.required),
+      'email': new FormControl(null, [
+        Validators.required,
+        Validators.email
+      ]),
+      'birthDate': new FormControl(null, Validators.required),
+      'gender': new FormControl(null, Validators.required),
       'description': new FormControl(null)
     });
   }
@@ -93,10 +100,12 @@ export class BasicAngularFormComponent implements OnInit {
  */
   public onSubmit(): void {
     if (this.userDetailsForm.valid) {
-      this.submitted = true;
-      console.log(this.userDetailsForm);
+      setTimeout(() => {
+        this.submittedMessage = false;
+      }, 4000);
+      this.submittedMessage = true;
+      console.log(this.userDetailsForm.value);
     }
   }
-
 
 }

@@ -42,6 +42,7 @@
     fxLayoutAlign="center center">
 
   <div
+    fxFlex="40rem"
     fxLayout="column"
     fxLayoutAlign="center start"
     fxLayoutGap="0.75rem">
@@ -58,11 +59,19 @@
           for="username">
         Username:
       </label>
-      <input
-          formControlName="username"
-          placeholder="your username..."
-          id="username"
-          type="text">
+      <div fxLayout="column">
+        <input
+            [ngClass]="{'error-input': !userDetailsForm.get('username').valid && userDetailsForm.get('username').touched}"
+            formControlName="username"
+            placeholder="your username..."
+            id="username"
+            type="text">
+        <span
+            class="error-message"
+            *ngIf="!userDetailsForm.get('username').valid && userDetailsForm.get('username').touched">
+          Please enter a valid username!
+        </span>
+      </div>
     </div>
 
     <!-- email -->
@@ -77,11 +86,19 @@
           for="email">
         Email:
       </label>
-      <input
-          formControlName="email"
-          placeholder="your email..."
-          id="email"
-          type="email">
+      <div fxLayout="column">
+        <input
+            [ngClass]="{'error-input': !userDetailsForm.get('email').valid && userDetailsForm.get('email').touched}"
+            formControlName="email"
+            placeholder="your email..."
+            id="email"
+            type="email">
+        <span
+            class="error-message"
+            *ngIf="!userDetailsForm.get('email').valid && userDetailsForm.get('email').touched">
+          Please enter a valid email!
+        </span>
+      </div>
     </div>
 
     <!-- birth date -->
@@ -96,11 +113,19 @@
             for="birthDate">
           Birth date:
         </label>
-      <input
-          formControlName="birthDate"
-          placeholder="your birth date..."
-          id="birthDate"
-          type="date">
+      <div fxLayout="column">
+        <input
+            [ngClass]="{'error-input': !userDetailsForm.get('birthDate').valid && userDetailsForm.get('birthDate').touched}"
+            formControlName="birthDate"
+            placeholder="your birth date..."
+            id="birthDate"
+            type="date">
+        <span
+            class="error-message"
+            *ngIf="!userDetailsForm.get('birthDate').valid && userDetailsForm.get('birthDate').touched">
+          Please enter a valid date!
+        </span>
+      </div>
     </div>
 
     <!-- gender -->
@@ -114,33 +139,40 @@
           fxLayoutAlign="end center">
         <label>Gender:</label>
       </div>
-      <div
-          fxLayout="row"
-          fxLayoutGap="0.55rem">
+      <div fxLayout="column">
         <div
             fxLayout="row"
-            fxLayoutAlign="center center"
-            fxLayoutGap="0.2rem">
-          <input
-              formControlName="gender"
-              type="radio"
-              id="genderMale"
-              name="gender"
-              value="male">
-          <label for="genderMale">Male</label>
+            fxLayoutGap="0.55rem">
+          <div
+              fxLayout="row"
+              fxLayoutAlign="center center"
+              fxLayoutGap="0.2rem">
+            <input
+                formControlName="gender"
+                type="radio"
+                id="genderMale"
+                name="gender"
+                value="male">
+            <label for="genderMale">Male</label>
+          </div>
+          <div
+              fxLayout="row"
+              fxLayoutAlign="center center"
+              fxLayoutGap="0.2rem">
+            <input
+                formControlName="gender"
+                type="radio"
+                id="genderFemale"
+                name="gender"
+                value="female">
+            <label for="genderFemale">Female</label>
+          </div>
         </div>
-        <div
-            fxLayout="row"
-            fxLayoutAlign="center center"
-            fxLayoutGap="0.2rem">
-          <input
-              formControlName="gender"
-              type="radio"
-              id="genderFemale"
-              name="gender"
-              value="female">
-          <label for="genderFemale">Female</label>
-        </div>
+        <span
+            class="error-message"
+            *ngIf="!userDetailsForm.get('gender').valid && userDetailsForm.get('gender').touched">
+          Please select your gender!
+        </span>
       </div>
     </div>
 
@@ -156,11 +188,18 @@
           for="description">
         Description:
       </label>
-      <textarea
-          formControlName="description"
-          id="description"
-          cols="40"
-          rows="5"></textarea>
+      <div fxLayout="column">
+        <textarea
+            formControlName="description"
+            id="description"
+            cols="30"
+            rows="5"></textarea>
+        <span
+            class="hint-message"
+            *ngIf="!userDetailsForm.get('description').pristine">
+          You've entered {{userDetailsForm.get('description').value.length}} characters.
+        </span>
+      </div>
     </div>
 
     <!-- buttons -->
@@ -187,6 +226,6 @@
 <div
     fxLayout="row"
     fxLayoutAlign="center center"
-    *ngIf="submitted">
+    *ngIf="submittedMessage">
   <span>Form submitted, open the console to see the result...</span>
 </div>

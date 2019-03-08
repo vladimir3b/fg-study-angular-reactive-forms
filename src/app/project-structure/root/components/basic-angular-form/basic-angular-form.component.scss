@@ -36,6 +36,28 @@
  *
  */
 
+ // CLASSES
+.hint-message {
+  font-family: 'Roboto', sans-serif;
+  color:lightseagreen;
+  font-size: 0.75rem;
+}
+
+.error-message {
+  font-family: 'Roboto', sans-serif;
+  color:lightcoral;
+  font-size: 0.75rem;
+}
+
+.error-input {
+  &::placeholder {
+    color: lightcoral;
+  }
+  color: lightcoral;
+  border-color: lightcoral;
+}
+
+ // ELEMENTS
  button {
    &:hover {
      background-color: darkorange;
@@ -70,5 +92,5 @@ div>span:first-child {
   color: white;
   margin-top: 2.5rem;
   padding: 1.5rem;
-  border-radius: 10rem;
+  border-radius: 1rem;
 }
