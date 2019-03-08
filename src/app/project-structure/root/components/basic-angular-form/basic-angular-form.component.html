@@ -47,12 +47,78 @@
     fxLayoutAlign="center start"
     fxLayoutGap="0.75rem">
 
+    <!-- full name -->
+    <div
+        formGroupName="fullName"
+        fxFill
+        fxLayout="column"
+        fxLayoutGap="0.75rem">
+
+      <!-- first name -->
+      <div
+          fxFill
+          fxLayout="row"
+          fxLayoutGap="0.35rem">
+        <label
+            [ngClass]="{'error-input': !userDetailsForm.get('fullName.firstName').valid && userDetailsForm.get('fullName.firstName').touched}"
+            fxFlex="30"
+            fxLayout="row"
+            fxLayoutAlign="end center"
+            for="firstName">
+          First name:
+        </label>
+        <div fxLayout="column">
+          <input
+              [ngClass]="{'error-input': !userDetailsForm.get('fullName.firstName').valid && userDetailsForm.get('fullName.firstName').touched}"
+              formControlName="firstName"
+              placeholder="Your first name..."
+              id="firstName"
+              type="text">
+          <span
+              class="error-message"
+              *ngIf="!userDetailsForm.get('fullName.firstName').valid && userDetailsForm.get('fullName.firstName').touched">
+            Please enter a valid first name!
+          </span>
+        </div>
+      </div>
+
+      <!-- last name -->
+      <div
+          fxFill
+          fxLayout="row"
+          fxLayoutGap="0.35rem">
+        <label
+            [ngClass]="{'error-input': !userDetailsForm.get('fullName.lastName').valid && userDetailsForm.get('fullName.lastName').touched}"
+            fxFlex="30"
+            fxLayout="row"
+            fxLayoutAlign="end center"
+            for="lastName">
+          Last name:
+        </label>
+        <div fxLayout="column">
+          <input
+              [ngClass]="{'error-input': !userDetailsForm.get('fullName.lastName').valid && userDetailsForm.get('fullName.lastName').touched}"
+              formControlName="lastName"
+              placeholder="Your last name..."
+              id="lastName"
+              type="text">
+          <span
+              class="error-message"
+              *ngIf="!userDetailsForm.get('fullName.lastName').valid && userDetailsForm.get('fullName.lastName').touched">
+            Please enter a valid last name!
+          </span>
+        </div>
+      </div>
+
+    </div>
+
     <!-- username -->
     <div
         fxFill
         fxLayout="row"
         fxLayoutGap="0.35rem">
       <label
+          [ngClass]="{'error-input': !userDetailsForm.get('username').valid && userDetailsForm.get('username').touched}"
           fxFlex="30"
           fxLayout="row"
           fxLayoutAlign="end center"
@@ -80,6 +146,7 @@
         fxLayout="row"
         fxLayoutGap="0.35rem">
       <label
+          [ngClass]="{'error-input': !userDetailsForm.get('email').valid && userDetailsForm.get('email').touched}"
           fxFlex="30"
           fxLayout="row"
           fxLayoutAlign="end center"
@@ -107,6 +174,7 @@
         fxLayout="row"
         fxLayoutGap="0.35rem">
       <label
+            [ngClass]="{'error-input': !userDetailsForm.get('birthDate').valid && userDetailsForm.get('birthDate').touched}"
             fxFlex="30"
             fxLayout="row"
             fxLayoutAlign="end center"
@@ -202,6 +270,82 @@
       </div>
     </div>
 
+    <!-- confirm hobbies -->
+    <div
+        fxFill
+        fxLayout="row"
+        fxLayoutGap="0.35rem">
+      <div
+          fxFlex="30"
+          fxLayout="row"
+          fxLayoutAlign="end center">
+        &nbsp;
+      </div>
+      <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="0.55rem">
+        <input
+            formControlName="confirmHobbies"
+            id="confirmHobbies"
+            type="checkbox">
+        <label for="confirmHobbies">Check if user has some hobbies.</label>
+      </div>
+    </div>
+
+    <!-- hobbies -->
+    <ng-container
+        formArrayName="hobbies"
+        *ngIf="userDetailsForm.get('confirmHobbies').value">
+      <div
+          *ngFor="let hobbyInput of userDetailsForm.get('hobbies').controls; let index = index"
+          fxFill
+          fxLayout="row"
+          fxLayoutGap="0.35rem">
+        <label
+            [ngClass]="{'error-input': !userDetailsForm.get('hobbies').controls[index].valid && userDetailsForm.get('hobbies').controls[index].touched}"
+            fxFlex="30"
+            fxLayout="row"
+            fxLayoutAlign="end center"
+            for="hobby{{ index + 1 }}">
+          Hobby{{ index + 1 }}:
+        </label>
+        <div fxLayout="column">
+          <div
+              fxLayout="row"
+              fxLayoutAlign="center center"
+              fxLayoutGap="0.35rem">
+            <input
+                [ngClass]="{'error-input': !userDetailsForm.get('hobbies').controls[index].valid && userDetailsForm.get('hobbies').controls[index].touched}"
+                formControlName="{{ index }}"
+                placeholder="your hobby..."
+                id="hobby{{index}}"
+                type="text">
+            <button
+                *ngIf="index <= userDetailsForm.get('hobbies').length - 2"
+                (click)="onDeleteHobbyInput(index)"
+                class="deleteHobbyInput"
+                type="button">
+                -
+            </button>
+            <button
+                [disabled]="!userDetailsForm.get('hobbies').controls[index].valid"
+                *ngIf="index === userDetailsForm.get('hobbies').length - 1"
+                (click)="onAddHobbyInput()"
+                class="addHobbyInput"
+                type="button">
+              +
+            </button>
+          </div>
+          <span
+              class="error-message"
+              *ngIf="!userDetailsForm.get('hobbies').controls[index].valid && userDetailsForm.get('hobbies').controls[index].touched">
+            Please enter a hobby!
+          </span>
+        </div>
+      </div>
+    </ng-container>
+
     <!-- buttons -->
     <div
         fxFill
@@ -216,8 +360,8 @@
       <div
           fxLayout="row"
           fxLayoutGap="0.55rem">
-        <button>Submit</button>
-        <button>Reset</button>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
       </div>
     </div>
   </div>

@@ -57,16 +57,40 @@
   border-color: lightcoral;
 }
 
+.deleteHobbyInput {
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  background-color: lightcoral;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  font-weight: bold;
+}
+
+.addHobbyInput {
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  background-color: lightseagreen;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  font-weight: bold;
+}
+
  // ELEMENTS
  button {
-   &:hover {
-     background-color: darkorange;
-   }
-   color: white;
-   background: darkcyan;
-   padding: 0.5rem;
-   border-radius: 0.5rem;
-   border: none
+  &:hover {
+    background-color: darkorange;
+  }
+  &:disabled {
+    background-color: gray;
+  }
+  color: white;
+  background: darkcyan;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
  }
 
 input, textarea {
