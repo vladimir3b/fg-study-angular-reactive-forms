@@ -118,7 +118,7 @@
         fxLayout="row"
         fxLayoutGap="0.35rem">
       <label
-          [ngClass]="{'error-input': !userDetailsForm.get('username').valid && userDetailsForm.get('username').touched}"
+          [ngClass]="{'error-input': !userDetailsForm.get('username').valid && !userDetailsForm.get('username').pristine}"
           fxFlex="30"
           fxLayout="row"
           fxLayoutAlign="end center"
@@ -127,14 +127,22 @@
       </label>
       <div fxLayout="column">
         <input
-            [ngClass]="{'error-input': !userDetailsForm.get('username').valid && userDetailsForm.get('username').touched}"
+            [ngClass]="{'error-input': !userDetailsForm.get('username').valid && !userDetailsForm.get('username').pristine}"
             formControlName="username"
             placeholder="your username..."
             id="username"
             type="text">
         <span
             class="error-message"
-            *ngIf="!userDetailsForm.get('username').valid && userDetailsForm.get('username').touched">
+            *ngIf="
+              userDetailsForm.get('username').errors?.usernameForbiddenCharacter &&
+              !userDetailsForm.get('username').pristine
+            ">
+          Only alphanumerics and underscores are permitted.<br>The first character must be a letter or an underscore.
+        </span>
+        <span
+            class="error-message"
+            *ngIf="userDetailsForm.get('username').errors?.required && !userDetailsForm.get('username').pristine">
           Please enter a valid username!
         </span>
       </div>
@@ -360,7 +368,11 @@
       <div
           fxLayout="row"
           fxLayoutGap="0.55rem">
-        <button type="submit">Submit</button>
+        <button
+            [disabled]="!userDetailsForm.valid"
+            type="submit">
+          Submit
+        </button>
         <button type="reset">Reset</button>
       </div>
     </div>

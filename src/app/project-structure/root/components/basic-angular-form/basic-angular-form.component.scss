@@ -36,31 +36,38 @@
  *
  */
 
+// CONSTANTS
+$primaryColor: lightseagreen;
+$warnColor: lightcoral;
+$neuterColor: gray;
+$buttonTextColor: white;
+$accentColor: darkorange;
+
  // CLASSES
 .hint-message {
   font-family: 'Roboto', sans-serif;
-  color:lightseagreen;
+  color: $primaryColor;
   font-size: 0.75rem;
 }
 
 .error-message {
   font-family: 'Roboto', sans-serif;
-  color:lightcoral;
+  color: $warnColor;
   font-size: 0.75rem;
 }
 
 .error-input {
   &::placeholder {
-    color: lightcoral;
+    color:  $warnColor;
   }
-  color: lightcoral;
-  border-color: lightcoral;
+  color:  $warnColor;
+  border-color:  $warnColor;
 }
 
 .deleteHobbyInput {
   font-family: 'Courier New', Courier, monospace;
-  color: white;
-  background-color: lightcoral;
+  color:  $buttonTextColor;
+  background-color:  $warnColor;
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
@@ -69,8 +76,8 @@
 
 .addHobbyInput {
   font-family: 'Courier New', Courier, monospace;
-  color: white;
-  background-color: lightseagreen;
+  color:  $buttonTextColor;
+  background-color:  $primaryColor;
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
@@ -78,26 +85,32 @@
 }
 
  // ELEMENTS
- button {
+button {
   &:hover {
-    background-color: darkorange;
+    background-color: $accentColor;
   }
   &:disabled {
-    background-color: gray;
+    background-color: $neuterColor;
   }
-  color: white;
+  &[type="reset"] {
+    &:hover {
+      background-color: $accentColor;
+    }
+    background-color:  $warnColor;
+  }
+  color:  $buttonTextColor;
   background: darkcyan;
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: none;
   outline: none;
- }
+}
 
 input, textarea {
   font-family: 'Roboto', sans-serif;
   padding: 0.2rem 0.3rem;
   border-radius: 0.3rem;
-  border: 1px gray solid;
+  border: 1px $neuterColor solid;
 }
 
 div>label:first-child {
@@ -112,8 +125,8 @@ input+label {
 
 div>span:first-child {
   font-family: 'Roboto', sans-serif;
-  background-color: lightcoral;
-  color: white;
+  background-color:  $warnColor;
+  color:  $buttonTextColor;
   margin-top: 2.5rem;
   padding: 1.5rem;
   border-radius: 1rem;

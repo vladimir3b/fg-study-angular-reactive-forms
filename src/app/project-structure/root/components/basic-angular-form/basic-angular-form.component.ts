@@ -91,7 +91,13 @@ export class BasicAngularFormComponent implements OnInit, OnDestroy {
         'firstName': new FormControl(null, Validators.required),
         'lastName': new FormControl(null, Validators.required),
       }),
-      'username': new FormControl(null, Validators.required),
+      'username': new FormControl(null, [
+        Validators.required,
+        this.validateUsername.bind(this)
+        // here .bind(this) is not necessary but it is a good practice
+        // to put it all the time, just in case we want to refer a
+        // property/method of this class
+      ]),
       'email': new FormControl(null, [
         Validators.required,
         Validators.email
@@ -109,6 +115,7 @@ export class BasicAngularFormComponent implements OnInit, OnDestroy {
           hobbyInputs.push(new FormControl(null, Validators.required));
         } else {
           hobbyInputs.controls = [];
+          hobbyInputs.reset();
         }
       })
     );
@@ -130,6 +137,7 @@ export class BasicAngularFormComponent implements OnInit, OnDestroy {
         this.submittedMessage = false;
       }, 4000);
       this.submittedMessage = true;
+      this.userDetailsForm.reset();
       console.log(this.userDetailsForm.value);
     }
   }
@@ -140,6 +148,16 @@ export class BasicAngularFormComponent implements OnInit, OnDestroy {
 
   public onDeleteHobbyInput(index: number): void {
     (this.userDetailsForm.get('hobbies') as FormArray).removeAt(index);
+  }
+
+  public validateUsername(control: FormControl): { [key: string]: boolean } {
+    if ((control.value) && !(/^[A-Za-z]+$/.test(control.value[0]))) {
+      return { 'usernameForbiddenCharacter': true };
+    }
+    if (/[\W]+/g.test(control.value)) {
+      return { 'usernameForbiddenCharacter': true };
+    }
+    return null;
   }
 
 }
