@@ -118,7 +118,10 @@
         fxLayout="row"
         fxLayoutGap="0.35rem">
       <label
-          [ngClass]="{'error-input': !userDetailsForm.get('username').valid && !userDetailsForm.get('username').pristine}"
+          [ngClass]="{
+            'error-input': !userDetailsForm.get('username').valid &&
+                          (!userDetailsForm.get('username').pristine || userDetailsForm.get('username').touched)
+          }"
           fxFlex="30"
           fxLayout="row"
           fxLayoutAlign="end center"
@@ -127,7 +130,10 @@
       </label>
       <div fxLayout="column">
         <input
-            [ngClass]="{'error-input': !userDetailsForm.get('username').valid && !userDetailsForm.get('username').pristine}"
+            [ngClass]="{
+              'error-input': !userDetailsForm.get('username').valid &&
+                            (!userDetailsForm.get('username').pristine || userDetailsForm.get('username').touched)
+            }"
             formControlName="username"
             placeholder="your username..."
             id="username"
@@ -142,7 +148,9 @@
         </span>
         <span
             class="error-message"
-            *ngIf="userDetailsForm.get('username').errors?.required && !userDetailsForm.get('username').pristine">
+            *ngIf="!userDetailsForm.get('username').valid &&
+                   (!userDetailsForm.get('username').pristine || userDetailsForm.get('username').touched)
+            ">
           Please enter a valid username!
         </span>
       </div>
@@ -168,11 +176,19 @@
             placeholder="your email..."
             id="email"
             type="email">
-        <span
-            class="error-message"
-            *ngIf="!userDetailsForm.get('email').valid && userDetailsForm.get('email').touched">
-          Please enter a valid email!
-        </span>
+        <ng-container *ngIf="userDetailsForm.get('email').invalid && userDetailsForm.get('email').touched" >
+          <ng-container [ngSwitch]="emailInputError()">
+            <span class="error-message" *ngSwitchCase="'required'">
+              Email is required!
+            </span>
+            <span class="error-message" *ngSwitchCase="'email'">
+              Please enter a valid email!
+            </span>
+            <span class="error-message" *ngSwitchCase="'emailIsForbidden'">
+              Using this email is forbidden!
+            </span>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
 
@@ -213,7 +229,9 @@
           fxFlex="30"
           fxLayout="row"
           fxLayoutAlign="end center">
-        <label>Gender:</label>
+        <label [ngClass]="{'error-input': !userDetailsForm.get('gender').valid && userDetailsForm.get('gender').touched}">
+          Gender:
+        </label>
       </div>
       <div fxLayout="column">
         <div
@@ -229,7 +247,11 @@
                 id="genderMale"
                 name="gender"
                 value="male">
-            <label for="genderMale">Male</label>
+            <label
+                [ngClass]="{'error-input': !userDetailsForm.get('gender').valid && userDetailsForm.get('gender').touched}"
+                for="genderMale">
+              Male
+            </label>
           </div>
           <div
               fxLayout="row"
@@ -241,7 +263,11 @@
                 id="genderFemale"
                 name="gender"
                 value="female">
-            <label for="genderFemale">Female</label>
+            <label
+                [ngClass]="{'error-input': !userDetailsForm.get('gender').valid && userDetailsForm.get('gender').touched}"
+                for="genderFemale">
+              Female
+            </label>
           </div>
         </div>
         <span
@@ -369,9 +395,15 @@
           fxLayout="row"
           fxLayoutGap="0.55rem">
         <button
-            [disabled]="!userDetailsForm.valid"
+            *ngIf="userDetailsForm.valid"
             type="submit">
           Submit
+        </button>
+        <button
+          *ngIf="userDetailsForm.invalid"
+          (click)="validateAllFormFields(userDetailsForm)"
+          type="button">
+          Validate
         </button>
         <button type="reset">Reset</button>
       </div>
