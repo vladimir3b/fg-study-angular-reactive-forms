@@ -2,8 +2,16 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
-  production: false
+export const ENVIRONMENT = {
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyALt00WufX3wV-OuAEX755g1hamCS44_Ck',
+    authDomain: 'fg-study-angular-material-demo.firebaseapp.com',
+    databaseURL: 'https://fg-study-angular-material-demo.firebaseio.com',
+    projectId: 'fg-study-angular-material-demo',
+    storageBucket: 'fg-study-angular-material-demo.appspot.com',
+    messagingSenderId: '36887717204'
+  }
 };
 
 /*

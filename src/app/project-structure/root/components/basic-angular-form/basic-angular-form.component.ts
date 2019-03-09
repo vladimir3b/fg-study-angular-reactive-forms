@@ -140,8 +140,7 @@ export class BasicAngularFormComponent implements OnInit, OnDestroy {
  *    ┴ ┴└─┘ ┴ ┴ ┴└─┘─┴┘└─┘
  */
   private validateAllFormFields(formGroup: FormGroup | FormArray) {
-
-    Object.keys(formGroup.controls).forEach(field => {
+    Object.keys(formGroup.controls).forEach((field : string) => {
       const control: AbstractControl = formGroup.get(field);
       if (control instanceof FormControl) {
         control.markAsTouched({ onlySelf: true });

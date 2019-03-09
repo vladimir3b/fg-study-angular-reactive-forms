@@ -35,6 +35,24 @@
  *       ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
  *
  */ -->
-<p>
-  basic-material-form works!
-</p>
+ <form
+    novalidate
+    [formGroup]="userDetailsForm">
+  <mat-form-field>
+
+    <input
+        matInput
+        placeholder="Your country..."
+        [matAutocomplete]="auto"
+        formControlName="country-input">
+
+    <mat-autocomplete
+        #auto="matAutocomplete"
+        autoActiveFirstOption>
+      <mat-option *ngFor="let country of countries | async" [value]="country">
+        <span>{{ country }}</span>
+      </mat-option>
+    </mat-autocomplete>
+
+  </mat-form-field>
+</form>

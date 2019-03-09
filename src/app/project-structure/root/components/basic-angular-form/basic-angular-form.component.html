@@ -36,6 +36,7 @@
  *
  */ -->
 <form
+    novalidate
     [formGroup]="userDetailsForm"
     (ngSubmit)="onSubmit()"
     fxLayout="row"
@@ -48,7 +49,7 @@
     fxLayoutGap="0.75rem">
 
     <!-- full name -->
-    <div
+    <fieldset
         formGroupName="fullName"
         fxFill
         fxLayout="column"
@@ -110,7 +111,7 @@
         </div>
       </div>
 
-    </div>
+    </fieldset>
 
     <!-- username -->
     <div
@@ -328,9 +329,12 @@
     </div>
 
     <!-- hobbies -->
-    <ng-container
+    <fieldset
         formArrayName="hobbies"
-        *ngIf="userDetailsForm.get('confirmHobbies').value">
+        *ngIf="userDetailsForm.get('confirmHobbies').value"
+        fxFill
+        fxLayout="column"
+        fxLayoutGap="0.75rem">
       <div
           *ngFor="let hobbyInput of userDetailsForm.get('hobbies').controls; let index = index"
           fxFill
@@ -378,7 +382,7 @@
           </span>
         </div>
       </div>
-    </ng-container>
+    </fieldset>
 
     <!-- buttons -->
     <div
