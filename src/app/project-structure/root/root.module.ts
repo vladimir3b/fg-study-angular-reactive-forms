@@ -24,6 +24,7 @@ import {
   MatAutocompleteModule,
   MatFormFieldModule,
   MatInputModule,
+  MatSelectModule,
   MatTabsModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
@@ -48,6 +49,7 @@ const ANGULAR_MATERIAL = [
   MatAutocompleteModule,
   MatFormFieldModule,
   MatInputModule,
+  MatSelectModule,
   MatTabsModule
 ];
 const KENDO_UI = [];

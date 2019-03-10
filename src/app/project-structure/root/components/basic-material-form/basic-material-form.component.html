@@ -37,22 +37,57 @@
  */ -->
  <form
     novalidate
-    [formGroup]="userDetailsForm">
-  <mat-form-field>
+    [formGroup]="userDetailsForm"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="1.5rem">
 
+
+  <!-- COUNTRY INPUT -->
+  <mat-form-field>
     <input
         matInput
         placeholder="Your country..."
         [matAutocomplete]="auto"
         formControlName="country-input">
-
     <mat-autocomplete
         #auto="matAutocomplete"
-        autoActiveFirstOption>
-      <mat-option *ngFor="let country of countries | async" [value]="country">
-        <span>{{ country }}</span>
+        autoActiveFirstOption
+        [displayWith]="displayCountryName">
+      <mat-option *ngFor="let countryName of (filteredCountryNames | async)" [value]="countryName">
+        <span>{{ countryName }}</span>
       </mat-option>
     </mat-autocomplete>
-
+    <mat-hint>
+      Choose the country you live in.
+    </mat-hint>
+    <mat-error *ngIf="userDetailsForm.get('country-input').errors?.invalidCountryName">
+      Invalid country name!
+    </mat-error>
+    <mat-error *ngIf="userDetailsForm.get('country-input').errors?.required">
+      Please enter a valid country name!
+    </mat-error>
   </mat-form-field>
+
+  <!-- CITY INPUT -->
+  <mat-form-field>
+    <mat-select
+        [disabled]="userDetailsForm.get('country-input').invalid"
+        placeholder="Your town/city..."
+        formControlName="city-input">
+      <mat-option
+          *ngFor="let city of cities | async"
+          [value]="city">
+        {{ city }}
+      </mat-option>
+    </mat-select>
+    <mat-hint>
+      Choose the city/town you live in.
+    </mat-hint>
+    <mat-error *ngIf="userDetailsForm.get('city-input').errors?.required">
+      Please select city/town!
+    </mat-error>
+  </mat-form-field>
+
 </form>
+
