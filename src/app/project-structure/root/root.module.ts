@@ -24,6 +24,8 @@ import {
   MatAutocompleteModule,
   MatFormFieldModule,
   MatInputModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatSelectModule,
   MatTabsModule
 } from '@angular/material';
@@ -49,6 +51,8 @@ const ANGULAR_MATERIAL = [
   MatAutocompleteModule,
   MatFormFieldModule,
   MatInputModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatSelectModule,
   MatTabsModule
 ];

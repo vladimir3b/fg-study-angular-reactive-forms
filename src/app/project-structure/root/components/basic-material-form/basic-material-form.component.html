@@ -54,9 +54,25 @@
         #auto="matAutocomplete"
         autoActiveFirstOption
         [displayWith]="displayCountryName">
-      <mat-option *ngFor="let countryName of (filteredCountryNames | async)" [value]="countryName">
-        <span>{{ countryName }}</span>
+      <mat-option *ngIf="countryInputIsLoading">
+        <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
       </mat-option>
+      <ng-container>
+        <!--
+          If using <ng-container *ngIf="countryInputIsLoading"> Angular will throw
+
+            BasicMaterialFormComponent.html:57 ERROR Error: ExpressionChangedAfterItHasBeenCheckedError:
+          Expression has changed after it was checked. Previous value: 'ngIf: true'. Current value:
+          'ngIf: false'.
+
+          The same thing if we use ngIf/else template...
+
+          I guess this is happening due to the fact that countryInputIsLoading is changing asynchronously.
+         -->
+        <mat-option *ngFor="let countryName of (filteredCountryNames | async)" [value]="countryName">
+          <span>{{ countryName }}</span>
+        </mat-option>
+      </ng-container>
     </mat-autocomplete>
     <mat-hint>
       Choose the country you live in.
@@ -72,14 +88,19 @@
   <!-- CITY INPUT -->
   <mat-form-field>
     <mat-select
-        [disabled]="userDetailsForm.get('country-input').invalid"
         placeholder="Your town/city..."
         formControlName="city-input">
-      <mat-option
-          *ngFor="let city of cities | async"
-          [value]="city">
-        {{ city }}
+      <mat-option *ngIf="cityInputIsLoading">
+        <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
       </mat-option>
+      <ng-container>
+        <!-- <ng-container *ngIf="!cityInputIsLoading"> the same as above... -->
+        <mat-option
+            *ngFor="let city of cities | async"
+            [value]="city">
+          {{ city }}
+        </mat-option>
+      </ng-container>
     </mat-select>
     <mat-hint>
       Choose the city/town you live in.
