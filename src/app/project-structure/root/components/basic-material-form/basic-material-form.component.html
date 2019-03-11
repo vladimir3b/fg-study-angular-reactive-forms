@@ -42,6 +42,41 @@
     fxLayoutAlign="center center"
     fxLayoutGap="1.5rem">
 
+  <!-- FULL NAME INPUT -->
+  <ng-container formGroupName="fullName">
+    <!--
+      I have a problem with this approach. As <ng-container> is a logical container,
+      it doesn't appear in the DOM tree, it is not rendered, or it is rendered
+      as an HTML comment. Using a directive like formGroupName with this kind of
+      element should create problems, as ng-container it isn't rendered, the
+      directive should not exist, but somehow it exists. I don't know why?
+      I guess I need further study...
+    -->
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="First name..."
+        formControlName="firstName">
+      <mat-hint *ngIf="userDetailsForm.get('fullName.firstName').pristine">
+        Enter your first name please
+      </mat-hint>
+      <mat-error *ngIf="userDetailsForm.get('fullName.firstName').invalid">
+        Your first name is required!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Last name..."
+        formControlName="lastName">
+      <mat-hint *ngIf="userDetailsForm.get('fullName.lastName').pristine">
+        Enter your last name please
+      </mat-hint>
+      <mat-error *ngIf="userDetailsForm.get('fullName.lastName').invalid">
+        Your last name is required!
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
 
   <!-- COUNTRY INPUT -->
   <mat-form-field>
@@ -74,7 +109,7 @@
         </mat-option>
       </ng-container>
     </mat-autocomplete>
-    <mat-hint>
+    <mat-hint *ngIf="userDetailsForm.get('country-input').pristine">
       Choose the country you live in.
     </mat-hint>
     <mat-error *ngIf="userDetailsForm.get('country-input').errors?.invalidCountryName">

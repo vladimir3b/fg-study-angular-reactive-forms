@@ -1,4 +1,3 @@
-import { ICountryModel } from './../../../../data/models/country.model';
 /***
  *    ██████╗  █████╗ ███████╗██╗ ██████╗
  *    ██╔══██╗██╔══██╗██╔════╝██║██╔════╝
@@ -38,18 +37,25 @@ import { ICountryModel } from './../../../../data/models/country.model';
  */
 import {
   Component,
-  OnInit,
-  ChangeDetectorRef
+  OnInit
 } from '@angular/core';
 import {
+  debounceTime,
+  finalize,
+  map,
+  switchMap,
+  tap
+} from 'rxjs/operators';
+import {
   FormControl,
+  FormBuilder,
   FormGroup,
   Validators
 } from '@angular/forms';
-import { map, startWith, filter, tap, debounceTime, switchMap, first, finalize } from 'rxjs/operators';
-import { Observable, timer } from 'rxjs';
+import { Observable } from 'rxjs';
 
 // MY IMPORTS
+import { ICountryModel } from './../../../../data/models/country.model';
 import { ReadCountriesService } from './../../../../data/services/read-countries.service';
 
 @Component({
@@ -71,13 +77,15 @@ export class BasicMaterialFormComponent implements OnInit {
   public countryInputIsLoading: boolean;
 
 
-
 /***
  *    ┌─┐┌─┐┌┐┌┌─┐┌┬┐┬─┐┬ ┬┌─┐┌┬┐┌─┐┬─┐
  *    │  │ ││││└─┐ │ ├┬┘│ ││   │ │ │├┬┘
  *    └─┘└─┘┘└┘└─┘ ┴ ┴└─└─┘└─┘ ┴ └─┘┴└─
  */
-  public constructor(private _readCountries: ReadCountriesService) { }
+  public constructor(
+    private _formBuilder: FormBuilder,
+    private _readCountries: ReadCountriesService
+  ) { }
 
  /***
  *    ┬  ┬┌─┐┌─┐
@@ -91,9 +99,33 @@ export class BasicMaterialFormComponent implements OnInit {
  *    ┴ ┴└─┘└─┘┴ ┴└─┘
  */
   public ngOnInit(): void {
-    this.userDetailsForm = new FormGroup({
-      'country-input': new FormControl(null, Validators.required, this.validateCountryName.bind(this)),
-      'city-input': new FormControl({ value: null, disabled: true }, Validators.required)
+    // this.userDetailsForm = new FormGroup({
+    //   'country-input': new FormControl(null, Validators.required, this.validateCountryName.bind(this)),
+    //   'city-input': new FormControl({ value: null, disabled: true }, Validators.required)
+    // });
+
+    this.userDetailsForm = this._formBuilder.group({
+      'fullName': this._formBuilder.group({
+        firstName: [
+          null,
+          [ Validators.required ]
+        ],
+        lastName: [
+          null,
+          [ Validators.required ]
+        ],
+      }),
+      'country-input': [
+        null,
+        [ Validators.required ],
+        [ this.validateCountryName.bind(this) ]
+      ],
+      'city-input': [{
+          value: null,
+          disabled: true
+        },
+        [ Validators.required ]
+      ]
     });
 
     this.filteredCountryNames = this.userDetailsForm.get('country-input').valueChanges
