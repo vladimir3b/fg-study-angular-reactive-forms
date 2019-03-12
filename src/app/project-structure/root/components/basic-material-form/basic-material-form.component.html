@@ -55,10 +55,11 @@
     <mat-form-field>
       <input
         matInput
+        fgRestrictInput="names"
         placeholder="First name..."
         formControlName="firstName">
       <mat-hint *ngIf="userDetailsForm.get('fullName.firstName').pristine">
-        Enter your first name please
+        Enter your first name please.
       </mat-hint>
       <mat-error *ngIf="userDetailsForm.get('fullName.firstName').invalid">
         Your first name is required!
@@ -67,10 +68,11 @@
     <mat-form-field>
       <input
         matInput
+        fgRestrictInput="names"
         placeholder="Last name..."
         formControlName="lastName">
       <mat-hint *ngIf="userDetailsForm.get('fullName.lastName').pristine">
-        Enter your last name please
+        Enter your last name please.
       </mat-hint>
       <mat-error *ngIf="userDetailsForm.get('fullName.lastName').invalid">
         Your last name is required!
@@ -142,6 +144,21 @@
     </mat-hint>
     <mat-error *ngIf="userDetailsForm.get('city-input').errors?.required">
       Please select city/town!
+    </mat-error>
+  </mat-form-field>
+
+  <!-- PHONE INPUT -->
+  <mat-form-field>
+    <input
+      matInput
+      fgRestrictInput="phone"
+      placeholder="Your phone..."
+      formControlName="phone-input">
+    <mat-hint *ngIf="userDetailsForm.get('phone-input').pristine">
+      Enter your phone number please.
+    </mat-hint>
+    <mat-error *ngIf="userDetailsForm.get('phone-input').invalid">
+      Your phone number is required!
     </mat-error>
   </mat-form-field>
 

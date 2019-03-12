@@ -40,6 +40,7 @@ import { ENVIRONMENT } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ReadCountriesService } from 'src/app/data/services/read-countries.service';
+import { RestrictInputDirective } from './directives/restrict-input/restrict-input.directive';
 import { RootComponent } from './components/root/root.component';
 import { RootRouting } from './root.routing';
 
@@ -65,6 +66,7 @@ const KENDO_UI = [];
     BasicMaterialFormComponent,
     HomeComponent,
     PageNotFoundComponent,
+    RestrictInputDirective,
     RootComponent
   ],
   imports: [

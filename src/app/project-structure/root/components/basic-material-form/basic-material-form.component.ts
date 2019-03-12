@@ -125,6 +125,10 @@ export class BasicMaterialFormComponent implements OnInit {
           disabled: true
         },
         [ Validators.required ]
+      ],
+      'phone-input': [
+        null,
+        [ Validators.required ]
       ]
     });
 
