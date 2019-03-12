@@ -27,6 +27,7 @@ import {
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSelectModule,
+  MatSnackBarModule,
   MatTabsModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
@@ -55,6 +56,7 @@ const ANGULAR_MATERIAL = [
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSelectModule,
+  MatSnackBarModule,
   MatTabsModule
 ];
 const KENDO_UI = [];

@@ -43,7 +43,7 @@
     fxLayoutGap="1.5rem">
 
   <!-- FULL NAME INPUT -->
-  <ng-container formGroupName="fullName">
+  <ng-container formGroupName="full-name">
     <!--
       I have a problem with this approach. As <ng-container> is a logical container,
       it doesn't appear in the DOM tree, it is not rendered, or it is rendered
@@ -57,11 +57,12 @@
         matInput
         fgRestrictInput="names"
         placeholder="First name..."
-        formControlName="firstName">
-      <mat-hint *ngIf="userDetailsForm.get('fullName.firstName').pristine">
+        (focus)="openSnackBar('Enter you names in proper-case with space between them.', 'Enter name')"
+        formControlName="first-name">
+      <mat-hint *ngIf="userDetailsForm.get('full-name.first-name').pristine">
         Enter your first name please.
       </mat-hint>
-      <mat-error *ngIf="userDetailsForm.get('fullName.firstName').invalid">
+      <mat-error *ngIf="userDetailsForm.get('full-name.first-name').invalid">
         Your first name is required!
       </mat-error>
     </mat-form-field>
@@ -69,12 +70,13 @@
       <input
         matInput
         fgRestrictInput="names"
+        (focus)="openSnackBar('Enter you names in proper-case with space between them.', 'Enter name')"
         placeholder="Last name..."
-        formControlName="lastName">
-      <mat-hint *ngIf="userDetailsForm.get('fullName.lastName').pristine">
+        formControlName="last-name">
+      <mat-hint *ngIf="userDetailsForm.get('full-name.last-name').pristine">
         Enter your last name please.
       </mat-hint>
-      <mat-error *ngIf="userDetailsForm.get('fullName.lastName').invalid">
+      <mat-error *ngIf="userDetailsForm.get('full-name.last-name').invalid">
         Your last name is required!
       </mat-error>
     </mat-form-field>

@@ -52,6 +52,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 
 // MY IMPORTS
@@ -84,7 +85,8 @@ export class BasicMaterialFormComponent implements OnInit {
  */
   public constructor(
     private _formBuilder: FormBuilder,
-    private _readCountries: ReadCountriesService
+    private _readCountries: ReadCountriesService,
+    private _snackBar: MatSnackBar
   ) { }
 
  /***
@@ -105,12 +107,12 @@ export class BasicMaterialFormComponent implements OnInit {
     // });
 
     this.userDetailsForm = this._formBuilder.group({
-      'fullName': this._formBuilder.group({
-        firstName: [
+      'full-name': this._formBuilder.group({
+        'first-name': [
           null,
           [ Validators.required ]
         ],
-        lastName: [
+        'last-name': [
           null,
           [ Validators.required ]
         ],
@@ -183,8 +185,10 @@ export class BasicMaterialFormComponent implements OnInit {
     );
   }
 
-  public test() {
-    return this.countryInputIsLoading;
+  public openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 
 }
