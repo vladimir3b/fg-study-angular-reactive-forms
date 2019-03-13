@@ -6,12 +6,12 @@
  *    ██████╔╝██║  ██║███████║██║╚██████╗
  *    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝
  *
- *         ██╗ ██████╗ ██╗    ██╗██╗██████╗  ██████╗ ███████╗████████╗███████╗
- *         ██║██╔═══██╗██║    ██║██║██╔══██╗██╔════╝ ██╔════╝╚══██╔══╝██╔════╝
- *         ██║██║   ██║██║ █╗ ██║██║██║  ██║██║  ███╗█████╗     ██║   ███████╗
- *    ██   ██║██║▄▄ ██║██║███╗██║██║██║  ██║██║   ██║██╔══╝     ██║   ╚════██║
- *    ╚█████╔╝╚██████╔╝╚███╔███╔╝██║██████╔╝╚██████╔╝███████╗   ██║   ███████║
- *     ╚════╝  ╚══▀▀═╝  ╚══╝╚══╝ ╚═╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝
+ *    ██╗  ██╗███████╗███╗   ██╗██████╗  ██████╗
+ *    ██║ ██╔╝██╔════╝████╗  ██║██╔══██╗██╔═══██╗
+ *    █████╔╝ █████╗  ██╔██╗ ██║██║  ██║██║   ██║
+ *    ██╔═██╗ ██╔══╝  ██║╚██╗██║██║  ██║██║   ██║
+ *    ██║  ██╗███████╗██║ ╚████║██████╔╝╚██████╔╝
+ *    ╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝╚═════╝  ╚═════╝
  *
  *    ███████╗ ██████╗ ██████╗ ███╗   ███╗
  *    ██╔════╝██╔═══██╗██╔══██╗████╗ ████║
@@ -35,12 +35,22 @@
  *       ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
  *
  */ -->
- <jqxBarGauge
- [width]="600" [height]="600" [max]="1000"
- [colorScheme]="'scheme02'" [values]="values">
-</jqxBarGauge>
+ <kendo-scheduler
+    [kendoSchedulerBinding]="events"
+    [selectedDate]="selectedDate"
+    style="height: 600px;">
+  <kendo-scheduler-day-view [startTime]="startTime">
+  </kendo-scheduler-day-view>
 
-<jqxInput [theme]="'material'"
-    [width]="200" [height]="25" [source]="countries"
-    [minLength]="1" [placeHolder]="'Enter a Country'">
-</jqxInput>
+  <kendo-scheduler-week-view [startTime]="startTime">
+  </kendo-scheduler-week-view>
+
+  <kendo-scheduler-month-view>
+  </kendo-scheduler-month-view>
+
+  <kendo-scheduler-timeline-view>
+  </kendo-scheduler-timeline-view>
+
+  <kendo-scheduler-agenda-view>
+  </kendo-scheduler-agenda-view>
+</kendo-scheduler>

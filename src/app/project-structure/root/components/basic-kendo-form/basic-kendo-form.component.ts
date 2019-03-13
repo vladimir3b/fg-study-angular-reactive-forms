@@ -1,3 +1,4 @@
+import { EventService } from './../../../../data/services/event.service';
 /***
  *    ██████╗  █████╗ ███████╗██╗ ██████╗
  *    ██╔══██╗██╔══██╗██╔════╝██║██╔════╝
@@ -6,12 +7,12 @@
  *    ██████╔╝██║  ██║███████║██║╚██████╗
  *    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝
  *
- *         ██╗ ██████╗ ██╗    ██╗██╗██████╗  ██████╗ ███████╗████████╗███████╗
- *         ██║██╔═══██╗██║    ██║██║██╔══██╗██╔════╝ ██╔════╝╚══██╔══╝██╔════╝
- *         ██║██║   ██║██║ █╗ ██║██║██║  ██║██║  ███╗█████╗     ██║   ███████╗
- *    ██   ██║██║▄▄ ██║██║███╗██║██║██║  ██║██║   ██║██╔══╝     ██║   ╚════██║
- *    ╚█████╔╝╚██████╔╝╚███╔███╔╝██║██████╔╝╚██████╔╝███████╗   ██║   ███████║
- *     ╚════╝  ╚══▀▀═╝  ╚══╝╚══╝ ╚═╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝
+ *    ██╗  ██╗███████╗███╗   ██╗██████╗  ██████╗
+ *    ██║ ██╔╝██╔════╝████╗  ██║██╔══██╗██╔═══██╗
+ *    █████╔╝ █████╗  ██╔██╗ ██║██║  ██║██║   ██║
+ *    ██╔═██╗ ██╔══╝  ██║╚██╗██║██║  ██║██║   ██║
+ *    ██║  ██╗███████╗██║ ╚████║██████╔╝╚██████╔╝
+ *    ╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝╚═════╝  ╚═════╝
  *
  *    ███████╗ ██████╗ ██████╗ ███╗   ███╗
  *    ██╔════╝██╔═══██╗██╔══██╗████╗ ████║
@@ -36,16 +37,20 @@
  *
  */
 import { Component, OnInit } from '@angular/core';
+import { SchedulerEvent } from '@progress/kendo-angular-scheduler';
 
 @Component({
-  selector: 'fg-basic-jqwidgets-form',
-  templateUrl: './basic-jqwidgets-form.component.html',
-  styleUrls: ['./basic-jqwidgets-form.component.scss']
+  selector: 'fg-basic-kendo-form',
+  templateUrl: './basic-kendo-form.component.html',
+  styleUrls: ['./basic-kendo-form.component.scss']
 })
-export class BasicJqwidgetsFormComponent implements OnInit {
+export class BasicKendoFormComponent implements OnInit {
 
-  values: number[] = [190, 115, 130, 137,800 ,600, 950];
-  constructor() { }
+  public selectedDate: Date = this._eventService.displayDate;
+  public startTime = '07:00';
+  public events: Array<SchedulerEvent> = this._eventService.sampleData;
+
+  constructor(private _eventService: EventService) { }
 
   ngOnInit() {
   }
