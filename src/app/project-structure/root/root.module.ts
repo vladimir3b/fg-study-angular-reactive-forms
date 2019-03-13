@@ -20,6 +20,8 @@ import { AngularFireModule } from '@angular/fire';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbargauge';
+import { jqxInputComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxinput';
 import {
   MatAutocompleteModule,
   MatFormFieldModule,
@@ -31,11 +33,11 @@ import {
   MatTabsModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // MY IMPORTS
 import { BasicAngularFormComponent } from './components/basic-angular-form/basic-angular-form.component';
-import { BasicKendoFormComponent } from './components/basic-kendo-form/basic-kendo-form.component';
+import { BasicJqwidgetsFormComponent } from './components/basic-jqwidgets-form/basic-jqwidgets-form.component';
 import { BasicMaterialFormComponent } from './components/basic-material-form/basic-material-form.component';
 import { ENVIRONMENT } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
@@ -49,7 +51,7 @@ const ANGULAR_FIRE_MODULES = [
   AngularFireDatabaseModule,
   AngularFireModule.initializeApp(ENVIRONMENT.firebase),
 ];
-const ANGULAR_MATERIAL = [
+const ANGULAR_MATERIAL_MODULES = [
   MatAutocompleteModule,
   MatFormFieldModule,
   MatInputModule,
@@ -59,12 +61,16 @@ const ANGULAR_MATERIAL = [
   MatSnackBarModule,
   MatTabsModule
 ];
-const KENDO_UI = [];
+const JQWIDGETS_MODULES = [
+  jqxBarGaugeComponent,
+  jqxInputComponent
+];
 
 @NgModule({
   declarations: [
+    ...JQWIDGETS_MODULES,
     BasicAngularFormComponent,
-    BasicKendoFormComponent,
+    BasicJqwidgetsFormComponent,
     BasicMaterialFormComponent,
     HomeComponent,
     PageNotFoundComponent,
@@ -73,10 +79,10 @@ const KENDO_UI = [];
   ],
   imports: [
     ...ANGULAR_FIRE_MODULES,
-    ...ANGULAR_MATERIAL,
-    ...KENDO_UI,
+    ...ANGULAR_MATERIAL_MODULES,
     BrowserAnimationsModule,
     BrowserModule,
+    FormsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
     RootRouting

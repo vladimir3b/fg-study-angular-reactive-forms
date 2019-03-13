@@ -22,7 +22,7 @@ import {
 
 // MY IMPORTS
 import { BasicAngularFormComponent } from './components/basic-angular-form/basic-angular-form.component';
-import { BasicKendoFormComponent } from './components/basic-kendo-form/basic-kendo-form.component';
+import { BasicJqwidgetsFormComponent } from './components/basic-jqwidgets-form/basic-jqwidgets-form.component';
 import { BasicMaterialFormComponent } from './components/basic-material-form/basic-material-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -48,7 +48,7 @@ const ROUTES: Routes = [
   },
   {
     path: 'basic-kendo-form',
-    component: BasicKendoFormComponent
+    component: BasicJqwidgetsFormComponent
   },
   {
     path: 'home',
