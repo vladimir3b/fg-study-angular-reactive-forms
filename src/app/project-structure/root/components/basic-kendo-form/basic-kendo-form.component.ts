@@ -1,4 +1,3 @@
-import { EventService } from './../../../../data/services/event.service';
 /***
  *    ██████╗  █████╗ ███████╗██╗ ██████╗
  *    ██╔══██╗██╔══██╗██╔════╝██║██╔════╝
@@ -36,8 +35,14 @@ import { EventService } from './../../../../data/services/event.service';
  *    ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝
  *
  */
-import { Component, OnInit } from '@angular/core';
-import { SchedulerEvent } from '@progress/kendo-angular-scheduler';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+// MY IMPORTS
+import { ReadEventsService } from './../../../../data/services/read-events.service';
 
 @Component({
   selector: 'fg-basic-kendo-form',
@@ -46,13 +51,40 @@ import { SchedulerEvent } from '@progress/kendo-angular-scheduler';
 })
 export class BasicKendoFormComponent implements OnInit {
 
-  public selectedDate: Date = this._eventService.displayDate;
-  public startTime = '07:00';
-  public events: Array<SchedulerEvent> = this._eventService.sampleData;
+/***
+ *    ┌─┐┬─┐┌─┐┌─┐┌─┐┬─┐┌┬┐┬┌─┐┌─┐
+ *    ├─┘├┬┘│ │├─┘├┤ ├┬┘ │ │├┤ └─┐
+ *    ┴  ┴└─└─┘┴  └─┘┴└─ ┴ ┴└─┘└─┘
+ */
+  public events: Observable<any>;
 
-  constructor(private _eventService: EventService) { }
+/***
+ *    ┌─┐┌─┐┌┐┌┌─┐┌┬┐┬─┐┬ ┬┌─┐┌┬┐┌─┐┬─┐
+ *    │  │ ││││└─┐ │ ├┬┘│ ││   │ │ │├┬┘
+ *    └─┘└─┘┘└┘└─┘ ┴ ┴└─└─┘└─┘ ┴ └─┘┴└─
+ */
+  public constructor(private _readEvents: ReadEventsService) { }
 
-  ngOnInit() {
+ /***
+ *    ┬  ┬┌─┐┌─┐
+ *    │  │├┤ ├┤
+ *    ┴─┘┴└  └─┘
+ *    ┌─┐┬ ┬┌─┐┬  ┌─┐
+ *    │  └┬┘│  │  ├┤
+ *    └─┘ ┴ └─┘┴─┘└─┘
+ *    ┬ ┬┌─┐┌─┐┬┌─┌─┐
+ *    ├─┤│ ││ │├┴┐└─┐
+ *    ┴ ┴└─┘└─┘┴ ┴└─┘
+ */
+  public ngOnInit(): void {
+    this.events = this._readEvents.getEvents();
   }
+
+
+/***
+ *    ┌┬┐┌─┐┌┬┐┬ ┬┌─┐┌┬┐┌─┐
+ *    │││├┤  │ ├─┤│ │ ││└─┐
+ *    ┴ ┴└─┘ ┴ ┴ ┴└─┘─┴┘└─┘
+ */
 
 }

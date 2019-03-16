@@ -20,6 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 import {
   MatAutocompleteModule,
   MatFormFieldModule,
@@ -39,10 +40,10 @@ import { BasicAngularFormComponent } from './components/basic-angular-form/basic
 import { BasicKendoFormComponent } from './components/basic-kendo-form/basic-kendo-form.component';
 import { BasicMaterialFormComponent } from './components/basic-material-form/basic-material-form.component';
 import { ENVIRONMENT } from 'src/environments/environment';
-import { EventService } from './../../data/services/event.service';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ReadCountriesService } from 'src/app/data/services/read-countries.service';
+import { ReadEventsService } from './../../data/services/read-events.service';
 import { RestrictInputDirective } from './directives/restrict-input/restrict-input.directive';
 import { RootComponent } from './components/root/root.component';
 import { RootRouting } from './root.routing';
@@ -85,6 +86,7 @@ const ANGULAR_MATERIAL_MODULES = [
     BrowserModule,
     FormsModule,
     FlexLayoutModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RootRouting
   ],
@@ -94,8 +96,8 @@ const ANGULAR_MATERIAL_MODULES = [
       provide: FirestoreSettingsToken,
       useValue: {}
     },
-    EventService,
-    ReadCountriesService
+    ReadCountriesService,
+    ReadEventsService
   ],
   bootstrap: [ RootComponent ]
 })
