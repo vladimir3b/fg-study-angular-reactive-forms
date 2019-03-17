@@ -35,6 +35,26 @@
  *       ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
  *
  */ -->
-<pre>
+<kendo-scheduler
+    [kendoSchedulerBinding]="events"
+    [selectedDate]="selectedDate"
+    timezone="Europe/Bucharest"
+    [editable]="true"
+    [kendoSchedulerReactiveEditing]="createFormGroup"
+    style="height: 600px;">
+
+  <kendo-scheduler-day-view startTime="07:00"></kendo-scheduler-day-view>
+  <kendo-scheduler-week-view startTime="07:00"></kendo-scheduler-week-view>
+  <kendo-scheduler-month-view></kendo-scheduler-month-view>
+  <kendo-scheduler-timeline-view></kendo-scheduler-timeline-view>
+  <kendo-scheduler-agenda-view></kendo-scheduler-agenda-view>
+
+</kendo-scheduler>
+
+<button (click)="submit()">
+  Send events
+</button>
+
+<!-- <pre>
   {{ events | async | json }}
-</pre>
+</pre> -->

@@ -6,7 +6,7 @@ export interface IEventModel {
   startingMoment: string;
   endingMoment: string;
   allDay: boolean;
-  RecurrenceRule?: string;
-  RecurrenceID?: string | number;
-  RecurrenceException?: Array<Date>;
+  recurrenceRule?: string;
+  recurrenceId?: string | number;
+  recurrenceException?: Array<Date>;
 }

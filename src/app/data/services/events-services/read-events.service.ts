@@ -27,7 +27,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
 // MY IMPORTS
-import { IEventModel } from './../models/event.model';
+import { IEventModel } from './../../models/event.model';
 
 
 @Injectable({
