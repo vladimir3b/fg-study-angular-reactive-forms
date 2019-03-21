@@ -58,6 +58,7 @@ import { Observable } from 'rxjs';
 // MY IMPORTS
 import { ICountryModel } from './../../../../data/models/country.model';
 import { ReadCountriesService } from './../../../../data/services/read-countries.service';
+import { ReadHobbiesService } from 'src/app/data/services/read-hobbies.service';
 
 @Component({
   selector: 'fg-basic-material-form',
@@ -77,7 +78,7 @@ export class BasicMaterialFormComponent implements OnInit {
   public cities: Observable<Array<any>>;
   public cityInputIsLoading: boolean;
   public countryInputIsLoading: boolean;
-  public hobbies: Array<string>;
+  public hobbies: Observable<Array<string>>;
 
 /***
  *    ┌─┐┌─┐┌┐┌┌─┐┌┬┐┬─┐┬ ┬┌─┐┌┬┐┌─┐┬─┐
@@ -87,15 +88,11 @@ export class BasicMaterialFormComponent implements OnInit {
   public constructor(
     private _formBuilder: FormBuilder,
     private _readCountries: ReadCountriesService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _readHobbies: ReadHobbiesService
   ) {
     this.descriptionMaximumNumberOfCharacters = 256;
-    this.hobbies = [
-      'drawing',
-      'singing',
-      'fitness',
-
-    ]
+    this.hobbies = this._readHobbies.getHobbies();
   }
 
  /***
@@ -147,6 +144,10 @@ export class BasicMaterialFormComponent implements OnInit {
           Validators.required,
           Validators.maxLength(this.descriptionMaximumNumberOfCharacters)
         ]
+      ],
+      'time': [
+        null,
+        [ Validators.required ]
       ]
     });
 

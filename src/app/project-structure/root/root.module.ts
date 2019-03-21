@@ -23,12 +23,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import {
   MatAutocompleteModule,
+  MatButtonModule,
+  MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSelectModule,
   MatSnackBarModule,
+  MatTableModule,
   MatTabsModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
@@ -59,12 +62,15 @@ const ANGULAR_FIRE_MODULES = [
 ];
 const ANGULAR_MATERIAL_MODULES = [
   MatAutocompleteModule,
+  MatButtonModule,
+  MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSelectModule,
   MatSnackBarModule,
+  MatTableModule,
   MatTabsModule
 ];
 

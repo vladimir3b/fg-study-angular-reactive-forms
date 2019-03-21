@@ -43,8 +43,7 @@ export class RestrictInputDirective {
     float: '^[-]?([0-9]*[.])?[0-9]+$',
     words: '([A-z]*\\s)*',
     names: '(([A-Z]){1}([a-z]){1,}\\s)*',
-    point25: '^\-?[0-9]*(?:\\.25|\\.50|\\.75|)$'
-    // phone: '^[+]?([0-9]){1,2}([.]?([0-9]{3})){1,}$',
+    point25: '^\-?[0-9]*(?:\\.25|\\.50|\\.75|)$',
   };
 
   @Input('fgRestrictInput')
@@ -52,6 +51,10 @@ export class RestrictInputDirective {
     switch (type) {
       case 'phone':
         inputMask('[+9]9.999.999.999', { placeholder: '_'})
+          .mask(this._elementRef.nativeElement);
+        break;
+      case 'time':
+        inputMask({regex: '([0-1][0-9])|([2][0-3]):[0-5][0-9]'})
           .mask(this._elementRef.nativeElement);
         break;
       default:
