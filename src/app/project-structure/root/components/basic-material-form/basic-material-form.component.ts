@@ -77,7 +77,7 @@ export class BasicMaterialFormComponent implements OnInit {
   public cities: Observable<Array<any>>;
   public cityInputIsLoading: boolean;
   public countryInputIsLoading: boolean;
-
+  public hobbies: Array<string>;
 
 /***
  *    ┌─┐┌─┐┌┐┌┌─┐┌┬┐┬─┐┬ ┬┌─┐┌┬┐┌─┐┬─┐
@@ -90,6 +90,12 @@ export class BasicMaterialFormComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {
     this.descriptionMaximumNumberOfCharacters = 256;
+    this.hobbies = [
+      'drawing',
+      'singing',
+      'fitness',
+
+    ]
   }
 
  /***
