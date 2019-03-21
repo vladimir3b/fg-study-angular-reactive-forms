@@ -164,5 +164,26 @@
     </mat-error>
   </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your description</mat-label>
+    <textarea
+      matInput
+      #description
+      matTextareaAutosize
+      matAutosizeMaxRows="10"
+      formControlName="description"
+      placeholder=""></textarea>
+    <mat-hint align="start"><strong>Enter some facts about you</strong> </mat-hint>
+    <mat-hint align="end">
+      {{description.value?.length}} / {{descriptionMaximumNumberOfCharacters}}
+    </mat-hint>
+    <mat-error *ngIf="userDetailsForm.get('description').errors?.required">
+      This field is required!
+    </mat-error>
+    <mat-error *ngIf="userDetailsForm.get('description').hasError('maxlength')">
+      Please enter maximum {{ descriptionMaximumNumberOfCharacters }} characters.
+    </mat-error>
+  </mat-form-field>
+
 </form>
 

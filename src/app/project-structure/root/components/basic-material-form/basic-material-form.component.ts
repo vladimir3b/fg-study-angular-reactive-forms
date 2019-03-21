@@ -71,6 +71,7 @@ export class BasicMaterialFormComponent implements OnInit {
  *    ├─┘├┬┘│ │├─┘├┤ ├┬┘ │ │├┤ └─┐
  *    ┴  ┴└─└─┘┴  └─┘┴└─ ┴ ┴└─┘└─┘
  */
+  public descriptionMaximumNumberOfCharacters: number;
   public filteredCountryNames: Observable<Array<string>>;
   public userDetailsForm: FormGroup;
   public cities: Observable<Array<any>>;
@@ -87,7 +88,9 @@ export class BasicMaterialFormComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _readCountries: ReadCountriesService,
     private _snackBar: MatSnackBar
-  ) { }
+  ) {
+    this.descriptionMaximumNumberOfCharacters = 256;
+  }
 
  /***
  *    ┬  ┬┌─┐┌─┐
@@ -131,6 +134,13 @@ export class BasicMaterialFormComponent implements OnInit {
       'phone-input': [
         null,
         [ Validators.required ]
+      ],
+      'description': [
+        null,
+        [
+          Validators.required,
+          Validators.maxLength(this.descriptionMaximumNumberOfCharacters)
+        ]
       ]
     });
 
